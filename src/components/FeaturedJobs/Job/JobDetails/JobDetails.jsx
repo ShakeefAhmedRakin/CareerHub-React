@@ -2,6 +2,9 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { GoLocation } from "react-icons/go";
 import { MdAttachMoney, MdOutlineSubtitles } from "react-icons/md";
 import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { saveJobApplication } from "../../../../utility/localStorage";
 
 const JobDetails = () => {
   const jobs = useLoaderData();
@@ -12,6 +15,11 @@ const JobDetails = () => {
 
   const job = jobs.find((job) => job.id === idInt);
 
+  const handleApplyJob = () => {
+    saveJobApplication(idInt);
+    toast("Wow so easy!");
+  };
+
   return (
     <>
       <h1 className="text-center font-main font-extrabold text-5xl mt-12 mb-4">
@@ -20,7 +28,7 @@ const JobDetails = () => {
       <h1 className="text-center font-main font-semibold text-3xl mb-12">
         {job.company_name}
       </h1>
-      <div className="font-main flex gap-4 mb-32">
+      <div className="font-main flex lg:flex-row flex-col gap-x-4 gap-y-8 mb-32">
         <div className="flex-1 space-y-6">
           <p className="text-[#757575] font-semibold">
             <span className="text-black font-extrabold">Description: </span>
@@ -75,11 +83,15 @@ const JobDetails = () => {
               </p>
             </div>
           </div>
-          <button className="btn w-full bg-gradient-to-r from-primaryOne to-primaryTwo text-white font-bold normal-case mt-2">
+          <button
+            onClick={handleApplyJob}
+            className="btn w-full bg-gradient-to-r from-primaryOne to-primaryTwo text-white font-bold normal-case mt-2"
+          >
             Apply Now
           </button>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

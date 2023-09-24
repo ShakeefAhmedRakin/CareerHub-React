@@ -37,11 +37,13 @@ const Job = ({ job }) => {
             </p>
           </div>
         </div>
-        <Link to={`/job/${job.id}`}>
-          <button className="btn bg-gradient-to-r from-primaryOne to-primaryTwo text-lg font-bold text-white normal-case hover:scale-[1.02]">
-            View Details
-          </button>
-        </Link>
+        <div>
+          <Link to={`/job/${job.id}`}>
+            <button className="btn bg-gradient-to-r from-primaryOne to-primaryTwo text-lg font-bold text-white normal-case hover:scale-[1.02]">
+              View Details
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );
